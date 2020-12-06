@@ -18,45 +18,43 @@ necunoscute si coeficienti rationali. */
 
 #include <iostream>
 #include <conio.h>
-#include <math.h>
-#include <stdlib.h>
 using namespace std;
 
 class rational
 {
 
 // date membru protejate(private);
-    int ns;//numarator
-    int nj;//numitor
+    int numarator;//numarator
+    int numitor;//numitor
 // functii membru neprotejate
 public:
     int cmmdc(int a,int b);
 // constructor folosit la initializare
     rational(int n1=0,int n2=0)
     {
-        ns=n1;
-        nj=n2;
+        numarator=n1;
+        numitor=n2;
     }// constructor de copiere
     rational(const rational& r)
     {
-        ns=r.sus();
-        nj=r.jos();
+        numarator=r.sus();
+        numitor=r.jos();
     }
     int sus() const
     {
-        return ns;
+        return numarator;
     }
     int jos() const
     {
-        return nj;
+        return numitor;
     }
     void setsus(int x)
     {
-        ns=x;
+        numarator=x;
     }
     void setjos(int y)
     {
-        nj=y;
+        numitor=y;
     }
     rational& operator+= (const rational& r);
     rational& operator-= (const rational& r);
@@ -75,28 +73,28 @@ public:
 rational& rational::operator+=(const rational& r)
 {
     int z;
-    z = ns * r.jos() + nj * r.sus();
-    nj= nj * r.jos();
-    ns= z;
+    z = numarator * r.jos() + numitor * r.sus();
+    numitor= numitor * r.jos();
+    numarator= z;
     return *this;
 }
 rational& rational::operator-=(const rational& r)
 {
-    int t=ns*r.jos()-nj*r.sus();
-    nj=nj*r.jos();
-    ns=t;
+    int t=numarator*r.jos()-numitor*r.sus();
+    numitor=numitor*r.jos();
+    numarator=t;
     return *this;
 }
 rational& rational::operator*=(const rational& r)
 {
-    ns*=r.sus();
-    nj*=r.jos();
+    numarator*=r.sus();
+    numitor*=r.jos();
     return *this;
 }
 rational& rational::operator/=(const rational& r)
 {
-    ns/=r.sus();
-    nj/=r.jos();
+    numarator/=r.sus();
+    numitor/=r.jos();
     return *this;
 }
 int rational::cmmdc(int a, int b)
@@ -185,6 +183,5 @@ int main()
         simplifica(suma);
     }
     cout<<suma<<endl;
-    getch();
     return 0;
 }
